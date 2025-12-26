@@ -1,6 +1,7 @@
 import React from "react"
 import { Github, Linkedin, Mail } from 'lucide-react'
-import { Button } from "@/components/ui/button"
+import { ConnectionLines } from './d3/ConnectionLines'
+import { ScrollReveal } from './d3/ScrollReveal'
 
 export const Contact: React.FC = () => {
   const contactLinks = [
@@ -22,35 +23,73 @@ export const Contact: React.FC = () => {
   ]
 
   return (
-    <footer className="w-full">
-      <div className="container mx-auto py-10 px-4">
-        <div className="max-w-3xl mx-auto text-center">
-          <h2 className="text-xl font-bold mb-8">Get in Touch</h2>
-          <div className="flex flex-wrap justify-center gap-4">
-            {contactLinks.map((link) => (
-              <Button
-                key={link.label}
-                variant="outline"
-                size="lg"
-                asChild
-                className="bg-background hover:bg-primary hover:text-primary-foreground transition-colors duration-300"
-              >
-                <a
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center space-x-2"
-                >
-                  <link.icon className="h-5 w-5" />
-                  <span>{link.label}</span>
-                </a>
-              </Button>
-            ))}
-          </div>
-          <p className="mt-8 text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Maksym Syagrovskyy. All rights reserved.
+    <footer id="Contact" className="py-16 md:py-24 px-4 border-t-2 border-foreground">
+      <ConnectionLines />
+
+      <div className="container mx-auto max-w-4xl">
+
+        <div className="mb-12">
+          {/* Section number */}
+          <p className="
+            font-mono text-sm md:text-base
+            mb-4
+          ">
+            <span className="text-dashed-box">03 / CONNECT</span>
           </p>
+
+          {/* Section title */}
+          <h2 className="
+            text-4xl md:text-5xl lg:text-6xl
+            font-bold
+            text-foreground
+            tracking-tight mb-4
+          ">
+            CONTACT
+          </h2>
+
+          {/* Blue accent line */}
+          <div className="w-16 border-t-4 border-primary" />
         </div>
+
+        <div className="flex flex-wrap gap-4 mb-12">
+          {contactLinks.map((link, index) => (
+            <ScrollReveal
+              key={link.label}
+              direction="up"
+              delay={index * 100}
+            >
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="
+                  inline-flex items-center gap-3
+                  px-6 py-4
+                  border-2 border-foreground
+                  bg-background
+                  text-foreground
+                  font-medium
+                  transition-colors duration-150
+                  hover:bg-primary
+                  hover:text-primary-foreground
+                  hover:border-primary
+                  focus-visible:outline-none
+                  focus-visible:ring-2
+                  focus-visible:ring-primary
+                  focus-visible:ring-offset-2
+                "
+              >
+                <link.icon className="h-5 w-5" />
+                <span>{link.label}</span>
+              </a>
+            </ScrollReveal>
+          ))}
+        </div>
+
+        {/* Footer Text */}
+        <p className="text-sm text-muted-foreground">
+          © {new Date().getFullYear()} Maksym Syagrovskyy
+        </p>
       </div>
     </footer>
   )
