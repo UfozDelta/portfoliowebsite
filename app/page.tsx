@@ -2,18 +2,20 @@ import { Contact } from "@/components/Contact";
 import { Header } from "@/components/Header";
 import { About } from "@/components/About";
 import { Projects } from "@/components/Projects";
+import { Hero } from "@/components/Hero";
 
 export default function Home() {
   return (
     <div>
-      <Header/>
+      <Header />
+      <Hero />
       <div id="About">
         <About />
       </div>
-      <div id='Projects'>
+      <div id="Projects">
         <Projects />
       </div>
-      <div id='Contact'>
+      <div id="Contact">
         <Contact />
       </div>
     </div>

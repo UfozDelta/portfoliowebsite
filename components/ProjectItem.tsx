@@ -1,46 +1,96 @@
 import React from 'react'
-import { ExternalLink, Check } from 'lucide-react'
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
+import { ExternalLink } from 'lucide-react'
 
 interface ProjectItemProps {
   title: string
   description: string
   link: string
-  features: string[]
+  tech: string[]  // Technology stack tags
+  size?: "large" | "medium" | "small"  // For bento grid sizing
 }
 
-export const ProjectItem: React.FC<ProjectItemProps> = ({ title, description, link, features }) => {
+export const ProjectItem: React.FC<ProjectItemProps> = ({
+  title,
+  description,
+  link,
+  tech,
+  size = "medium"
+}) => {
+  /**
+   * Grid span classes based on size variant
+   * Large: 6 cols x 2 rows (featured)
+   * Medium: 4 cols x 2 rows (standard)
+   * Small: 3 cols x 1 row (compact)
+   */
+  const sizeClasses = {
+    large: "col-span-12 md:col-span-6 row-span-2",
+    medium: "col-span-12 md:col-span-6 lg:col-span-4 row-span-2",
+    small: "col-span-12 md:col-span-6 lg:col-span-3 row-span-1"
+  }
+
   return (
-    <Card className="h-full flex flex-col transition-all hover:shadow-lg hover:-translate-y-0.5">
-      <CardHeader>
-        <CardTitle className="text-xl font-semibold">{title}</CardTitle>
-      </CardHeader>
-      <CardContent className="flex-grow">
-        <p className="text-muted-foreground mb-4">{description}</p>
-        <div className="space-y-2">
-          {features.slice(0, 4).map((feature, index) => (
-            <div key={index} className="flex items-start space-x-2">
-              <Check className="h-5 w-5 text-primary flex-shrink-0 mt-0.5" />
-              <span className="text-sm">{feature}</span>
-            </div>
-          ))}
-        </div>
-      </CardContent>
-      <CardFooter>
-        <Button asChild variant="outline" className="w-full">
-          <a
-            href={link}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center"
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`
+        ${sizeClasses[size]}
+        group
+        relative
+        border-2 border-foreground
+        bg-background
+        p-6
+        transition-colors duration-150
+        hover:bg-primary hover:text-primary-foreground
+        hover:border-primary
+        flex flex-col justify-between
+        cursor-pointer
+      `}
+    >
+      {/* Header: Title + External Link Icon */}
+      <div className="flex items-start justify-between gap-4 mb-4">
+        <h3 className="text-xl md:text-2xl font-bold tracking-tight">
+          {title}
+        </h3>
+        <ExternalLink
+          className="
+            w-5 h-5 flex-shrink-0
+            text-muted-foreground
+            group-hover:text-primary-foreground
+            transition-colors
+          "
+        />
+      </div>
+
+      {/* Description */}
+      <p className="
+        text-base text-muted-foreground
+        group-hover:text-primary-foreground
+        mb-6
+        leading-relaxed
+      ">
+        {description}
+      </p>
+
+      {/* Tech Stack - Monospace Font */}
+      <div className="flex flex-wrap gap-2 mt-auto">
+        {tech.map((item, index) => (
+          <span
+            key={index}
+            className="
+              font-mono text-sm
+              text-foreground
+              group-hover:text-primary-foreground
+              transition-colors
+            "
           >
-            View Project
-            <ExternalLink className="ml-2 h-4 w-4" />
-          </a>
-        </Button>
-      </CardFooter>
-    </Card>
+            {item}
+            {/* Add separator between tags (but not after last one) */}
+            {index < tech.length - 1 && " · "}
+          </span>
+        ))}
+      </div>
+    </a>
   )
 }
 

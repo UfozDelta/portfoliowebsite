@@ -1,76 +1,86 @@
-'use client'
-
 import React from 'react'
-import { Code, Database, LineChart, Binary, User } from 'lucide-react'
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
+import { DataPattern } from './d3/DataPattern'
+import { ScrollReveal } from './d3/ScrollReveal'
 
 export const About = () => {
-  const skills = [
-    {
-      icon: Binary,
-      title: "Machine Learning Projects",
-      description: "Building practical ML applications to solve real-world problems"
-    },
-    {
-      icon: Database,
-      title: "Backend Development",
-      description: "Experienced in designing and implementing robust backend systems and APIs"
-    },
-    {
-      icon: LineChart,
-      title: "Quantitative Finance",
-      description: "Implementing data analysis systems for financial market insights"
-    },
-    {
-      icon: Code,
-      title: "Data Visualization",
-      description: "Creating interactive dashboards that transform complex data into clear insights"
-    }
+
+  const focusAreas = [
+    "Machine Learning & AI Applications",
+    "Backend Development & System Design",
+    "Quantitative Finance & Trading Systems",
+    "Data Visualization & Analytics"
   ]
 
   return (
-    <div className="container mx-auto py-12 px-4 space-y-12">
-      <div className="text-center space-y-4">
-        <h1 className="text-4xl font-bold text-primary">
-          Building Systems at the Intersection of Data & Code
-        </h1>
-      </div>
-      
-      <Card className="bg-secondary/50">
-        <CardContent className="pt-6">
-          <p className="text-lg text-center leading-relaxed">
-            Hi! I'm Maksym Syagrovskyy, a second-year Computer Science student at the University of Toronto 
-            with hands-on experience in building data-driven systems and applications.
+    <section className="relative py-16 md:py-24 px-4">
+      <DataPattern />
+
+      <div className="relative z-10 container mx-auto max-w-4xl">
+
+        <div className="mb-12">
+          {/* Section number */}
+          <p className="
+            font-mono text-sm md:text-base
+            mb-4
+          ">
+            <span className="text-dashed-box">01 / BACKGROUND</span>
           </p>
-        </CardContent>
-      </Card>
-      
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-        {skills.map((skill, index) => (
-          <Card key={index} className="transition-all hover:shadow-lg hover:-translate-y-0.5">
-            <CardHeader className="flex flex-row items-center space-x-4 pb-2">
-              <skill.icon className="w-8 h-8 text-primary" />
-              <CardTitle>{skill.title}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-muted-foreground">{skill.description}</p>
-            </CardContent>
-          </Card>
-        ))}
+
+          <h2 className="
+            text-4xl md:text-5xl lg:text-6xl
+            font-bold
+            text-foreground
+            tracking-tight mb-4
+          ">
+            ABOUT
+          </h2>
+
+          {/* Blue accent line - visual consistency with Projects section */}
+          <div className="w-16 border-t-4 border-primary" />
+        </div>
+
+        {/* Content with Scroll Reveal Animation */}
+        <ScrollReveal direction="up" delay={100}>
+          <div className="space-y-8">
+            {/* Large intro paragraph for emphasis */}
+            <p className="text-lg md:text-xl leading-relaxed">
+              Third-year Mathematics, Statistics & Computer Science student at the University of Toronto.
+            </p>
+
+            {/* Body text */}
+            <p className="text-base md:text-lg leading-relaxed text-muted-foreground">
+              I develop practical solutions at the intersection of mathematics, statistics, and code from
+              implementing machine learning algorithms to building robust backend systems
+              and creating data visualization tools. This portfolio showcases projects
+              spanning ML, quantitative finance, and full-stack development.
+              I am currently developing a sports betting arbitrage system that identifies and executes risk-free betting opportunities across multiple sportsbooks using real-time odds analysis and automated trade execution.
+            </p>
+
+            {/* Focus Areas List with Outlined Boxes */}
+            <div className="pt-4">
+              <h3 className="text-xl md:text-2xl font-semibold mb-6">
+                Focus Areas
+              </h3>
+
+              <div className="flex flex-wrap gap-3">
+                {focusAreas.map((area, index) => (
+                  <span
+                    key={index}
+                    className="
+                      text-outline-box
+                      font-mono text-sm md:text-base
+                      text-foreground
+                    "
+                  >
+                    {area}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
       </div>
-      
-      <Card className="bg-primary text-primary-foreground">
-        <CardContent className="pt-6">
-          <p className="text-lg leading-relaxed">
-            While pursuing my degree, I've developed a passion for solving complex problems through code. 
-            From implementing machine learning algorithms and building robust backend systems to creating data visualization tools,
-            this portfolio showcases my projects across various fields. I continue to explore new technologies and enhance my skills
-            in machine learning, finance, backend development, and data visualization.
-          </p>
-        </CardContent>
-      </Card>
-    </div>
+    </section>
   )
 }
 
