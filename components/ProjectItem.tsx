@@ -6,7 +6,7 @@ interface ProjectItemProps {
   description: string
   link: string
   tech: string[]  // Technology stack tags
-  size?: "large" | "medium" | "small"  // For bento grid sizing
+  size?: "xlarge" | "large" | "medium" | "small"  // For bento grid sizing
 }
 
 export const ProjectItem: React.FC<ProjectItemProps> = ({
@@ -18,13 +18,15 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
 }) => {
   /**
    * Grid span classes based on size variant
-   * Large: 6 cols x 2 rows (featured)
-   * Medium: 4 cols x 2 rows (standard)
+   * XLarge: 6 cols x 3 rows (hero/focal point)
+   * Large: 4 cols x 2 rows (featured)
+   * Medium: 3 cols x 2 rows (standard)
    * Small: 3 cols x 1 row (compact)
    */
   const sizeClasses = {
-    large: "col-span-12 md:col-span-6 row-span-2",
-    medium: "col-span-12 md:col-span-6 lg:col-span-4 row-span-2",
+    xlarge: "col-span-12 md:col-span-8 lg:col-span-6 row-span-3",
+    large: "col-span-12 md:col-span-6 lg:col-span-4 row-span-2",
+    medium: "col-span-12 md:col-span-6 lg:col-span-3 row-span-2",
     small: "col-span-12 md:col-span-6 lg:col-span-3 row-span-1"
   }
 
@@ -45,6 +47,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
         hover:border-primary
         flex flex-col justify-between
         cursor-pointer
+        overflow-hidden
       `}
     >
       {/* Header: Title + External Link Icon */}
@@ -68,12 +71,14 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
         group-hover:text-primary-foreground
         mb-6
         leading-relaxed
+        flex-1
+        overflow-hidden
       ">
         {description}
       </p>
 
       {/* Tech Stack - Monospace Font */}
-      <div className="flex flex-wrap gap-2 mt-auto">
+      <div className="flex flex-wrap gap-2 mt-auto flex-shrink-0">
         {tech.map((item, index) => (
           <span
             key={index}
@@ -82,6 +87,7 @@ export const ProjectItem: React.FC<ProjectItemProps> = ({
               text-foreground
               group-hover:text-primary-foreground
               transition-colors
+              whitespace-nowrap
             "
           >
             {item}
