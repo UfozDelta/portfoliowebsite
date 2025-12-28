@@ -7,47 +7,68 @@ import { ProjectItem } from './ProjectItem'
  */
 const projects = [
   {
+    title: "FundingFlow",
+    description: "ML-powered cross-exchange funding rate arbitrage system with delta-neutral portfolios",
+    link: "https://github.com/UfozDelta/fundingflow",
+    tech: ["Python", "scikit-learn", "XGBoost", "PostgreSQL", "asyncio", "WebSockets"],
+    size: "medium" as const  // 3 cols, 2 rows
+  },
+  {
     title: "EdiGen",
     description: 'Program that creates short-form content from long-form videos using machine learning',
     link: "https://github.com/UfozDelta/WindowsTalk",
     tech: ["Python", "TensorFlow", "FFmpeg", "OpenAI"],
-    size: "large" as const  // Featured project
+    size: "medium" as const  // 3 cols, 2 rows
   },
   {
-    title: "Trading Terminal",
-    description: "Streamlined trade execution platform for efficient market operations",
-    link: "https://github.com/UfozDelta/WindowsTalk",
-    tech: ["React", "WebSocket", "Node.js", "PostgreSQL"],
-    size: "medium" as const
-  },
-  {
-    title: "Expense Tracker",
-    description: "A comprehensive tool for managing personal and business expenses",
-    link: "https://github.com/UfozDelta/WindowsTalk",
-    tech: ["TypeScript", "React", "Firebase"],
-    size: "small" as const
-  },
-  {
-    title: "Trading Dashboard",
-    description: "Comprehensive data aggregation tool for optimal decision-making in dynamic markets",
-    link: "https://github.com/UfozDelta/WindowsTalk",
-    tech: ["D3.js", "Python", "REST API", "Redis"],
-    size: "medium" as const
+    title: "ArbRight",
+    description: "A Python tool used to find real-time arbitrage opportunities between different sports books",
+    link: "https://github.com/UfozDelta/ArbRight",
+    tech: ["Python", "Websockets", "APIs", "Supabase"],
+    size: "medium" as const  // 3 cols, 2 rows
   },
   {
     title: "UofT Credit Explorer",
-    description: "Tool for optimizing course selection based on interests and graduation timeline",
-    link: "https://github.com/UfozDelta/WindowsTalk",
-    tech: ["Next.js", "GraphQL", "Vercel"],
-    size: "small" as const
+    description: "A tool that visualizes UofT course prerequisites as an interactive dependency graph",
+    link: "https://github.com/UfozDelta/uoft-explore",
+    tech: ["Next.js", "D3.js", "Python", "Web Scraping", "ChromaDB"],
+    size: "medium" as const  // 3 cols, 2 rows
   },
   {
-    title: "TTC Bus Tracker",
-    description: "Real-time TTC bus tracking and transit news for efficient commuting",
+    title: "Moventra",
+    description: "Habit tracking app with streak tracking, calendar visualization, and routine management",
+    link: "https://github.com/UfozDelta/Moventra",
+    tech: ["React Native", "Next.js", "Supabase", "Prisma", "TypeScript"],
+    size: "medium" as const  // 3 cols, 2 rows
+  },
+  {
+    title: "RBC Credit Statement Reader",
+    description: "Tool for analyzing RBC credit card statements and visualize them in an informative way",
+    link: "https://github.com/UfozDelta/rbc-pdf-reader",
+    tech: ["Next.js", "GraphQL", "Python", "OCR"],
+    size: "medium" as const  // 3 cols, 2 rows
+  },
+  {
+    title: "SwiftrTTC",
+    description: "Real-time TTC bus tracking and transit news",
+    link: "https://github.com/UfozDelta/SwiftrTTC",
+    tech: ["React Native", "Nextjs", "Python"],
+    size: "medium" as const  // 3 cols, 1 row
+  },
+  {
+    title: "Trading Dashboard",
+    description: "Dashboard for view of market",
     link: "https://github.com/UfozDelta/WindowsTalk",
-    tech: ["React Native", "API", "Maps"],
-    size: "small" as const
-  }
+    tech: ["Express.js", "Redis", "Nextjs", "Node"],
+    size: "small" as const  // 3 cols, 1 row
+  },
+  {
+    title: "Velox",
+    description: "Streamlined trade execution CLI for efficient market operations",
+    link: "https://github.com/UfozDelta/Velox",
+    tech: ["Python", "WebSocket", "APIs"],
+    size: "small" as const  // 3 cols, 2 rows
+  },
 ]
 
 export const Projects = () => {
@@ -74,7 +95,7 @@ export const Projects = () => {
         <div className="
           grid
           grid-cols-12
-          gap-4
+          gap-3
           auto-rows-[200px]
         ">
           {projects.map((project, index) => (
@@ -92,4 +113,3 @@ export const Projects = () => {
     </section>
   )
 }
-
