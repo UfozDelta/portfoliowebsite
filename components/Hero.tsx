@@ -27,10 +27,11 @@ export const Hero = () => {
         <p className="
           text-[12rem] md:text-[20rem] lg:text-[28rem]
           font-black
-          opacity-[0.02]
+          opacity-0
           leading-none
+
         ">
-          DEVELOPER
+         DEVELOPER
         </p>
       </div>
 
