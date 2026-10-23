@@ -3,240 +3,143 @@
 @tailwind utilities;
 
 /**
- * Global Styles: Swiss/Neo-Brutalist Design System
- *
- * Design Philosophy:
- * - Pure monochrome palette with single electric blue accent
- * - No rounded corners (brutalist aesthetic)
- * - Clean Geist font family (no Arial fallback)
- * - Smooth scroll behavior for hash navigation
+ * Global styles: clean, monochrome, one electric blue accent, no rounded corners.
+ * Console edge comes from the pixel label font, the dot grid and the cursor.
  */
 
 html {
-  scroll-behavior: smooth;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 @layer base {
-  /**
-   * Light Mode (Default)
-   * Color System: Electric Blue (#0066FF) + Monochrome
-   */
   :root {
-    /* Pure monochrome backgrounds */
-    --background: 0 0% 100%;           /* Pure white */
-    --foreground: 0 0% 0%;             /* Pure black text */
-
-    /* Card backgrounds (minimal usage) */
-    --card: 0 0% 100%;                 /* White card */
-    --card-foreground: 0 0% 0%;        /* Black text on cards */
-
-    /* Popover backgrounds */
-    --popover: 0 0% 100%;              /* White popover */
-    --popover-foreground: 0 0% 0%;     /* Black text */
-
-    /* Primary = Electric Blue Accent */
-    --primary: 214 100% 50%;           /* #0066FF - Electric blue */
-    --primary-foreground: 0 0% 100%;   /* White text on blue */
-
-    /* Secondary = Off-white for subtle sections */
-    --secondary: 0 0% 96%;             /* #F5F5F5 - Off white */
-    --secondary-foreground: 0 0% 0%;   /* Black text */
-
-    /* Muted = Light gray for disabled/subtle elements */
-    --muted: 0 0% 80%;                 /* #CCCCCC - Light gray */
-    --muted-foreground: 0 0% 40%;      /* #666666 - Medium gray */
-
-    /* Accent = Darker blue for hover states */
-    --accent: 214 100% 40%;            /* #0052CC - Darker blue */
-    --accent-foreground: 0 0% 100%;    /* White text */
-
-    /* Destructive (keep for system components) */
-    --destructive: 0 84.2% 60.2%;      /* Red */
-    --destructive-foreground: 0 0% 98%; /* White text */
-
-    /* Borders = Dark for neo-brutalist hard edges */
-    --border: 0 0% 10%;                /* #1A1A1A - Dark border */
-    --input: 0 0% 10%;                 /* Dark input border */
-    --ring: 214 100% 50%;              /* Blue focus ring */
-
-    /* Chart colors (keep for potential data viz) */
-    --chart-1: 214 100% 50%;           /* Blue */
-    --chart-2: 0 0% 20%;               /* Dark gray */
-    --chart-3: 0 0% 40%;               /* Medium gray */
-    --chart-4: 0 0% 60%;               /* Light gray */
-    --chart-5: 214 100% 40%;           /* Dark blue */
-
-    /* Brutalist Design: NO rounded corners */
+    --background: 0 0% 100%;
+    --foreground: 0 0% 4%;
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 4%;
+    --primary: 214 100% 50%;           /* #0066FF */
+    --primary-foreground: 0 0% 100%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 4%;
+    --muted: 0 0% 90%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 214 100% 40%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 88%;
+    --input: 0 0% 88%;
+    --ring: 214 100% 50%;
+    --chart-1: 214 100% 50%;
+    --chart-2: 0 0% 20%;
+    --chart-3: 0 0% 40%;
+    --chart-4: 0 0% 60%;
+    --chart-5: 214 100% 40%;
     --radius: 0px;
+    color-scheme: light;
   }
 
-  /**
-   * Dark Mode
-   * Inverted monochrome with same blue accent
-   */
-  .dark {
-    --background: 0 0% 0%;             /* Pure black background */
-    --foreground: 0 0% 100%;           /* Pure white text */
-    --card: 0 0% 4%;                   /* #0A0A0A - Charcoal card */
-    --card-foreground: 0 0% 100%;      /* White text */
-    --popover: 0 0% 4%;                /* Charcoal popover */
-    --popover-foreground: 0 0% 100%;   /* White text */
-    --primary: 214 100% 50%;           /* Same blue accent */
-    --primary-foreground: 0 0% 100%;   /* White text */
-    --secondary: 0 0% 10%;             /* #1A1A1A - Dark gray */
-    --secondary-foreground: 0 0% 100%; /* White text */
-    --muted: 0 0% 20%;                 /* #333333 - Muted dark */
-    --muted-foreground: 0 0% 60%;      /* #999999 - Muted light */
-    --accent: 214 100% 40%;            /* Darker blue */
-    --accent-foreground: 0 0% 100%;    /* White text */
-    --destructive: 0 62.8% 30.6%;      /* Dark red */
-    --destructive-foreground: 0 0% 98%; /* White text */
-    --border: 0 0% 90%;                /* #E5E5E5 - Light border in dark mode */
-    --input: 0 0% 90%;                 /* Light input border */
-    --ring: 214 100% 50%;              /* Blue focus ring */
-    --chart-1: 214 100% 50%;           /* Blue */
-    --chart-2: 0 0% 80%;               /* Light gray */
-    --chart-3: 0 0% 60%;               /* Medium gray */
-    --chart-4: 0 0% 40%;               /* Dark gray */
-    --chart-5: 214 100% 60%;           /* Bright blue */
+  /* Dark tokens apply for the OS setting, unless light is forced, or when dark is forced. */
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --background: 0 0% 5%;
+      --foreground: 0 0% 96%;
+      --card: 0 0% 7%;
+      --card-foreground: 0 0% 96%;
+      --popover: 0 0% 7%;
+      --popover-foreground: 0 0% 96%;
+      --primary: 214 100% 60%;
+      --primary-foreground: 0 0% 4%;
+      --secondary: 0 0% 10%;
+      --secondary-foreground: 0 0% 96%;
+      --muted: 0 0% 16%;
+      --muted-foreground: 0 0% 62%;
+      --accent: 214 100% 68%;
+      --accent-foreground: 0 0% 4%;
+      --border: 0 0% 16%;
+      --input: 0 0% 16%;
+      --ring: 214 100% 60%;
+      color-scheme: dark;
+    }
   }
-}
 
-@layer base {
+  :root[data-theme="dark"] {
+    --background: 0 0% 5%;
+    --foreground: 0 0% 96%;
+    --card: 0 0% 7%;
+    --card-foreground: 0 0% 96%;
+    --popover: 0 0% 7%;
+    --popover-foreground: 0 0% 96%;
+    --primary: 214 100% 60%;
+    --primary-foreground: 0 0% 4%;
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 0 0% 96%;
+    --muted: 0 0% 16%;
+    --muted-foreground: 0 0% 62%;
+    --accent: 214 100% 68%;
+    --accent-foreground: 0 0% 4%;
+    --border: 0 0% 16%;
+    --input: 0 0% 16%;
+    --ring: 214 100% 60%;
+    color-scheme: dark;
+  }
+
   * {
     @apply border-border;
   }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+
+  ::selection {
+    background: hsl(var(--primary));
+    color: hsl(var(--primary-foreground));
   }
 }
 
-/**
- * Modern Design Treatment Utilities
- *
- * These custom utilities layer modern design trends onto
- * the existing brutalist foundation. Apply sparingly for
- * premium feel without overwhelming the clean aesthetic.
- *
- * Design Trends Implemented:
- * - Outlined text boxes (bordered labels/tags)
- * - Visible grids (authentic "raw process" background)
- * - Creative shadows (depth through geometric shapes)
- * - Gradient text (image-masked typography)
- * - Layered text (depth through z-index stacking)
- */
-
 @layer utilities {
-  /**
-   * Outlined Text Boxes
-   * Bordered containers for labels, tags, and emphasis
-   * Usage: Role descriptions, category badges, tech stacks
-   */
-  .text-outline-box {
-    border: 2px solid hsl(var(--foreground));
-    padding: 0.5rem 1rem;
+  /* Faint dot grid, fading out toward the edges of the viewport. */
+  .dot-grid {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: radial-gradient(hsl(var(--foreground) / 0.16) 1px, transparent 1px);
+    background-size: 24px 24px;
+    -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 20%, transparent 100%);
+    mask-image: radial-gradient(ellipse 70% 60% at 50% 30%, #000 20%, transparent 100%);
+  }
+
+  /* Blinking block cursor. */
+  .cursor {
     display: inline-block;
-  }
-
-  /**
-   * Dashed Text Boxes
-   * Dashed border variation for visual variety and design breakup
-   * Creates playful, less formal emphasis
-   * Usage: Alternative emphasis, keywords, special terms
-   */
-  .text-dashed-box {
-    border: 2px dashed hsl(var(--primary));
-    padding: 0.5rem 1rem;
-    display: inline-block;
-  }
-
-  /**
-   * Visible Grid Background
-   * Subtle grid overlay showing "raw design process"
-   * Creates authentic, in-progress aesthetic
-   * Usage: Hero background, About section
-   */
-  .grid-background {
-    background-image:
-      linear-gradient(hsl(var(--border)) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
-    background-size: 20px 20px;
-    opacity: 0.1;
-  }
-
-  /**
-   * Creative Shadow: Brutalist Offset
-   * NOT box-shadow, but a geometric shape behind element
-   * Creates depth and tells visual story about importance
-   * Usage: Featured project cards, CTA buttons
-   */
-  .shadow-brutalist {
-    position: relative;
-  }
-
-  .shadow-brutalist::after {
-    content: '';
-    position: absolute;
-    top: 8px;
-    left: 8px;
-    width: 100%;
-    height: 100%;
+    width: 0.55ch;
+    height: 1em;
+    margin-left: 0.15em;
+    vertical-align: -0.12em;
     background: hsl(var(--primary));
-    z-index: -1;
-    opacity: 0.15;
+    animation: blink 1.1s steps(1) infinite;
   }
 
-  /**
-   * Creative Shadow: Geometric Offset
-   * Border outline offset from main element
-   * More subtle than shadow-brutalist
-   * Usage: Hero buttons, emphasized cards
-   */
-  .shadow-brutalist-offset {
-    position: relative;
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
   }
 
-  .shadow-brutalist-offset::before {
-    content: '';
-    position: absolute;
-    bottom: -12px;
-    right: -12px;
-    width: 100%;
-    height: 100%;
-    border: 2px solid hsl(var(--border));
-    z-index: -1;
-  }
-
-  /**
-   * Gradient Text (Image-Masked Typography)
-   * Electric blue to black gradient fill
-   * High-contrast premium look
-   * Usage: Hero name, featured blog post titles, section numbers
-   */
-  .gradient-text {
-    background: linear-gradient(
-      135deg,
-      hsl(var(--primary)) 0%,
-      hsl(var(--foreground)) 100%
-    );
-    -webkit-background-clip: text;
-    background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  /**
-   * Text Layering (Text Behind Objects)
-   * Creates depth through z-index stacking
-   * Large background text with reduced opacity
-   * Usage: Hero "DEVELOPER" background, section accents
-   */
-  .text-layer-back {
-    position: relative;
-    z-index: 0;
-  }
-
-  .text-layer-front {
-    position: relative;
-    z-index: 10;
+  @media (prefers-reduced-motion: reduce) {
+    .cursor {
+      animation: none;
+    }
   }
 }

@@ -27,8 +27,9 @@ export default {
        * Mono: Geist Mono for technical elements and code
        */
       fontFamily: {
-        sans: ['var(--font-manrope)'],
-        mono: ['var(--font-geist-mono)'],
+        sans: ['var(--font-geist-sans)', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-geist-mono)', 'ui-monospace', 'monospace'],
+        pixel: ['var(--font-geist-pixel-square)', 'var(--font-geist-mono)', 'ui-monospace', 'monospace'],
       },
 
       // Color system: All colors defined via CSS variables in app/globals.css
