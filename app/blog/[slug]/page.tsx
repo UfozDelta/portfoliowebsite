@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { EditLink } from "@/components/EditLink";
 import { formatDate } from "@/lib/collections";
 import { getItems } from "@/lib/data";
 
@@ -76,6 +77,7 @@ export default async function PostPage({ params }: { params: Params }) {
           </Link>
         )}
       </nav>
+      <EditLink href={`/admin/c/posts/${post.id}`} label="edit post" />
     </main>
   );
 }

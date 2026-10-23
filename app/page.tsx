@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CopyEmail } from "@/components/CopyEmail";
+import { EditLink } from "@/components/EditLink";
 import { ExperienceList, NonprofitList, PostList, PublicationList } from "@/components/Entries";
 import { LocalTime } from "@/components/LocalTime";
 import { ProjectList } from "@/components/ProjectList";
@@ -148,6 +149,7 @@ export default async function Home() {
           back to top
         </a>
       </footer>
+      <EditLink href="/admin" label="edit site" />
     </main>
   );
 }

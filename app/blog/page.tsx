@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EditLink } from "@/components/EditLink";
 import { PostList } from "@/components/Entries";
 import { getItems } from "@/lib/data";
 
@@ -28,6 +29,7 @@ export default async function BlogIndex() {
           <p className="text-muted-foreground">No posts yet.</p>
         )}
       </div>
+      <EditLink href="/admin/c/posts/new" label="new post" />
     </main>
   );
 }

@@ -12,7 +12,9 @@ export const adminConfigured = () => Boolean(process.env.ADMIN_PASSWORD)
 function signingKey() {
   const password = process.env.ADMIN_PASSWORD
   if (!password) return null
-  return process.env.SESSION_SECRET ?? createHash("sha256").update(`session:${password}`).digest("hex")
+  // `||`, not `??`: an empty SESSION_SECRET (a blank line in .env) must fall back to the derived key.
+  // Signing with an empty key would let anyone forge a valid admin cookie.
+  return process.env.SESSION_SECRET || createHash("sha256").update(`session:${password}`).digest("hex")
 }
 
 const sign = (expires: number) => createHmac("sha256", signingKey() as string).update(String(expires)).digest("hex")

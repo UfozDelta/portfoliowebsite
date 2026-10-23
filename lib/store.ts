@@ -2,13 +2,25 @@ import { Redis } from "@upstash/redis"
 
 /**
  * Vercel's Upstash integration names its variables after the prefix chosen when connecting
- * (STORAGE_*, KV_*), while the Upstash console uses UPSTASH_REDIS_*. Accept any of them.
+ * (it produced STORAGE_KV_REST_API_URL here; older setups use KV_* or STORAGE_*), while the
+ * Upstash console uses UPSTASH_REDIS_REST_*. Accept any of them. The read-only token is never
+ * used, because the admin has to write.
  */
 const env = process.env
-const url =
-  env.STORAGE_REST_API_URL ?? env.KV_REST_API_URL ?? env.UPSTASH_REDIS_REST_URL
-const token =
-  env.STORAGE_REST_API_TOKEN ?? env.KV_REST_API_TOKEN ?? env.UPSTASH_REDIS_REST_TOKEN
+const pick = (names: string[]) => names.map((n) => env[n]).find((v) => v && v.length > 0)
+
+const url = pick([
+  "STORAGE_KV_REST_API_URL",
+  "STORAGE_REST_API_URL",
+  "KV_REST_API_URL",
+  "UPSTASH_REDIS_REST_URL",
+])
+const token = pick([
+  "STORAGE_KV_REST_API_TOKEN",
+  "STORAGE_REST_API_TOKEN",
+  "KV_REST_API_TOKEN",
+  "UPSTASH_REDIS_REST_TOKEN",
+])
 
 /** The site works without a store (it falls back to the built-in content); the admin needs one. */
 export const hasDb = Boolean(url && token)

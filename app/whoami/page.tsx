@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { EditLink } from "@/components/EditLink";
 import { LocalTime } from "@/components/LocalTime";
 import { getItems, getSettings } from "@/lib/data";
 import { EMAIL, links } from "@/lib/projects";
@@ -84,6 +85,7 @@ export default async function WhoAmI() {
             ))}
         </ul>
       </section>
+      <EditLink href="/admin" label="edit whoami" />
     </main>
   );
 }

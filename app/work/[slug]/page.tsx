@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { EditLink } from "@/components/EditLink";
 import { getProjects } from "@/lib/data";
 
 type Params = Promise<{ slug: string }>;
@@ -109,6 +110,7 @@ export default async function ProjectPage({ params }: { params: Params }) {
           </Link>
         )}
       </nav>
+      <EditLink href={`/admin/projects/${project.slug}`} label="edit project" />
     </main>
   );
 }
